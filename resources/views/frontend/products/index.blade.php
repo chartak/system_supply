@@ -35,15 +35,6 @@
                                         {{ trans('cruds.product.fields.unit_measurementid') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.yearContractProduct.fields.quantity') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.yearContractProduct.fields.price') }}
-                                    </th>
-                                    <th>
-                                        {{ 'Sum' }}
-                                    </th>
-                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -69,12 +60,6 @@
                                     </td>
                                     <td>
                                     </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -93,36 +78,17 @@
                                             {{ $product->unit_measurementid->unit_of_measurement ?? '' }}
                                         </td>
                                         <td>
-                                            <input class="form-control form-control-sm" type="number" name="quantity[]" id="quantity_{{ $product->id}}" value="{{ old('quantity', '') }}" step="1" required>
-                                            <!-- @if($errors->has('quantity'))
-                                                <div class="invalid-feedback">
-                                                    {{ $errors->first('quantity') }}
-                                                </div>
-                                            @endif -->
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-control-sm" type="number" name="price[]" id="price_{{ $product->id}}" value="{{ old('price', '') }}" step="0.01" required>
-                                            <!-- @if($errors->has('price'))
-                                                <div class="invalid-feedback">
-                                                    {{ $errors->first('price') }}
-                                                </div>
-                                            @endif -->
-                                        </td>
-                                        <td>
-                                            <span></span>
-                                        </td>
-                                        <td>
-                                            <!-- @can('product_show')
+                                            @can('product_show')
                                                 <a class="btn btn-xs btn-primary" href="{{ route('frontend.products.show', $product->id) }}">
                                                     {{ trans('global.view') }}
                                                 </a>
-                                            @endcan -->
+                                            @endcan
 
-                                            <!-- @can('product_edit')
+                                            @can('product_edit')
                                                 <a class="btn btn-xs btn-info" href="{{ route('frontend.products.edit', $product->id) }}">
                                                     {{ trans('global.edit') }}
                                                 </a>
-                                            @endcan -->
+                                            @endcan
 
                                             @can('product_delete')
                                                 <form action="{{ route('frontend.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
@@ -191,7 +157,6 @@
                 $($.fn.dataTable.tables(true)).DataTable()
                     .columns.adjust();
             });
-            // table.fixedHeader.enable(true);
 
             let visibleColumnsIndexes = null;
             $('.datatable thead').on('input', '.search', function () {
@@ -215,7 +180,6 @@
                 });
             })
 
-            // {{ $product->id}}
         })
 
     </script>
